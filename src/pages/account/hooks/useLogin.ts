@@ -16,11 +16,11 @@ export default function useLogin() {
     const { dispatch, appSelector } = useRedux();
 
     const location: Location = useLocation();
-    let redirectUrl: string = '/';
+    let redirectUrl: string = '/home/Pagehome';
 
     if (location.state) {
         const { from } = location.state as LocationState;
-        redirectUrl = from ? from.pathname : '/';
+        redirectUrl = from ? from.pathname : '/home/Pagehome';
     }
 
     useEffect(() => {

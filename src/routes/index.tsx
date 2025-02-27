@@ -26,6 +26,8 @@ const LockScreen2 = React.lazy(() => import('pages/account/LockScreen2'));
 // dashboard
 const AnalyticsDashboard = React.lazy(() => import('pages/dashboard/Analytics'));
 const EcommerceDashboard = React.lazy(() => import('pages/dashboard/Ecommerce'));
+const Home = React.lazy(() => import('pages/dashboard/Home/Pagehome'));
+const Products = React.lazy(() => import('pages/dashboard/Products/Productpage'));
 const ProjectDashboard = React.lazy(() => import('pages/dashboard/Project'));
 const EWalletDashboard = React.lazy(() => import('pages/dashboard/E-Wallet'));
 
@@ -145,10 +147,10 @@ const Widgets = React.lazy(() => import('pages/uikit/Widgets'));
 const GoogleMaps = React.lazy(() => import('pages/maps/GoogleMaps'));
 const VectorMaps = React.lazy(() => import('pages/maps/VectorMaps'));
 
-const loading = () => <div className=""></div>;
+const loading = () => <div>Loading...</div>;
 
 type LoadComponentProps = {
-    component: React.LazyExoticComponent<() => JSX.Element>;
+    component: React.LazyExoticComponent<React.ComponentType<any>>; 
 };
 
 const LoadComponent = ({ component: Component }: LoadComponentProps) => (
@@ -156,6 +158,7 @@ const LoadComponent = ({ component: Component }: LoadComponentProps) => (
         <Component />
     </Suspense>
 );
+
 
 const AllRoutes = () => {
     const { appSelector } = useRedux();
@@ -225,6 +228,14 @@ const AllRoutes = () => {
                     path: 'landing',
                     element: <LoadComponent component={Landing} />,
                 },
+                {
+                    path: 'home/Pagehome',
+                    element: <LoadComponent component={Home} />,
+                },
+                {
+                    path: 'products/Productpage',
+                    element: <LoadComponent component={Products} />,
+                },
             ],
         },
         {
@@ -251,6 +262,7 @@ const AllRoutes = () => {
                             path: 'e-wallet',
                             element: <LoadComponent component={EWalletDashboard} />,
                         },
+                       
                     ],
                 },
                 {
@@ -291,7 +303,7 @@ const AllRoutes = () => {
                         },
                         {
                             path: 'ecommerce',
-                            children: [
+                            children: [  
                                 {
                                     path: 'products',
                                     element: <LoadComponent component={EcommerceProducts} />,
